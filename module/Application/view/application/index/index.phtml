@@ -1,0 +1,42 @@
+
+       
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Employee Image
+                </th>
+                <th>
+                    Employee Name
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Email Address
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    Date of Birth
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            <?php 
+            foreach ($result as $res) {
+                echo '<tr>
+                        <td> <img class="img-circle" src="'.$this->basePath('uploads/').$res['image'].'" style="width:70px; height:70px"></td>
+                        <td>'.$res['name'].'</td>
+                        <td>'.$res['address'].'</td>
+                        <td>'.$res['email'].'</td>
+                        <td>'.$res['phone'].'</td>
+                        <td>'.$res['dbo'].'</td>
+                        ';?>
+                        <td><a class="btn btn-primary" href="<?php echo $this->url('edit',['action' => 'edit','id' => $res['id']]); ?>">Edit  </a> <a class="btn btn-danger" href="<?php echo $this->url('delete',['action' => 'delete','id' => $res['id']]); ?>">Delete</a></td>
+                    </tr>
+                    <?php
+            }
+            ?>
+        </table>

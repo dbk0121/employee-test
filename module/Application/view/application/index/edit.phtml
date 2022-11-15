@@ -1,0 +1,33 @@
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+            <br /><br />
+                <form method="post" class="row g-3 needs-validation" enctype="multipart/form-data">
+                  <div class="col-md-12">
+                    <label for="your_name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="your_name" name="your_name" value="<?php echo $result['name'] ?>" required>        
+                    <br />            
+                  </div>
+                  <div class="col-md-12">
+                    <label for="your_phone" class="form-label">Phone</label>                    
+                      <input type="tel" class="form-control" id="your_phone" name="your_phone" aria-describedby="inputGroupPrepend" value="<?php echo $result['phone'] ?>" required>                    
+                  </div>
+                  <div class="col-md-12">
+                  <br />
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" value="<?php echo $result['address'] ?>" required>    
+                    <br />                
+                  </div>
+                  
+                  <div class="col-md-12">
+                    <label for="your_dob" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="your_dob" name="your_dob" value="<?php echo date("Y-m-d", strtotime($result['dbo'])) ?>" max="<?php echo date("Y-m-d") ?>" required>                    
+                  </div>
+                  
+                  <div class="col-md-12">
+                  <br />
+                    <button class="btn btn-primary " type="submit">Submit form</button>
+                  </div>
+                </form>
+            </div>
+        </div>
