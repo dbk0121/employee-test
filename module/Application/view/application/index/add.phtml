@@ -18,7 +18,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="your_phone" class="form-label">Phone</label>                    
-                      <input type="tel" class="form-control" id="your_phone" name="your_phone" aria-describedby="inputGroupPrepend" required>                    
+                      <input type="tel" class="form-control" id="your_phone" name="your_phone" pattern="[0-9]{1,14}" aria-describedby="inputGroupPrepend" required>                    
                   </div>
                   <div class="col-md-12">
                   <br />
@@ -34,7 +34,7 @@
 
                   <div class="col-md-6">
                     <label for="your_profile_img" class="form-label">Profile Image</label>
-                    <input type="file" class="form-control" id="your_profile_img" name="your_profile_img" required>                    
+                    <input type="file" class="form-control" id="your_profile_img" name="your_profile_img"  accept="image/png, image/gif, image/jpeg, image/jpg" required>                    
                   </div>
                   
                   <div class="col-md-12">

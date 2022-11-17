@@ -69,12 +69,18 @@ class IndexController extends AbstractActionController
                     $filesize  = new \Zend\Validator\File\Size(array('min' => 1000 )); //1KB  
                     $extension = new \Zend\Validator\File\Extension(array('extension' => array('jpg','png')));
                     $httpadapter->setValidators(array($filesize, $extension), $files['file']['name']);
+
                     if($httpadapter->isValid()) {
-                        $httpadapter->setDestination('public/uploads/');
-                        if($httpadapter->receive($files['file']['name'])) {
-                            $newfile = $httpadapter->getFileName();
-                            $filename = $files['your_profile_img']['name'];
-                        }
+                        // $httpadapter->setDestination('public/uploads/');
+                        // if($httpadapter->receive($files['file']['name'])) {
+                        //     $newfile = $httpadapter->getFileName();
+                        //     $filename = $files['your_profile_img']['name'];
+                        // }
+
+                        $filename = time().'.jpg';
+                        $httpadapter->addFilter('Rename', 'public/uploads/'.$filename,  $files['your_profile_img']['name']);
+                        $httpadapter->receive($files['your_profile_img']['name']);
+                        // $filename = $httpadapter->getFilename(); 
                     }
                 }
             
@@ -96,9 +102,34 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         $your_name = isset($_POST['your_name']) ? $_POST['your_name'] : '';
         if($your_name){ 
-            $sql = "UPDATE `employee` SET `name`= '$_POST[your_name]',`address`='$_POST[address]', `phone`='$_POST[your_phone]', `dbo`='$_POST[your_dob]' WHERE `id`= $id";
-            $statement = $this->adapter->query($sql);
-            $results = $statement->execute();
+            
+                $files =  $request->getFiles()->toArray();
+                $httpadapter = new \Zend\File\Transfer\Adapter\Http(); 
+                $filesize  = new \Zend\Validator\File\Size(array('min' => 1000 )); //1KB  
+                $extension = new \Zend\Validator\File\Extension(array('extension' => array('jpg','png')));
+                $httpadapter->setValidators(array($filesize, $extension), $files['file']['name']);
+                
+                if($httpadapter->isValid()) {
+                    echo 1;
+                    // $httpadapter->setDestination('public/uploads/');
+                    // if($httpadapter->receive($files['file']['name'])) {
+                    //     $newfile = $httpadapter->getFileName();
+                    //     $filename = $files['your_profile_img']['name'];
+                    // }
+                        
+                    $filename = time().'.jpg';
+                    $httpadapter->addFilter('Rename', 'public/uploads/'.$filename,  $files['your_profile_img']['name']);
+                    $httpadapter->receive($files['your_profile_img']['name']);
+                    // $filename = $httpadapter->getFilename(); 
+
+                    $sql = "UPDATE `employee` SET `name`= '$_POST[your_name]',`address`='$_POST[address]', `phone`='$_POST[your_phone]', `dbo`='$_POST[your_dob]', `image`='$filename' WHERE `id`= $id";
+                    $statement = $this->adapter->query($sql);
+                    $results = $statement->execute();
+                }else{
+                    $sql = "UPDATE `employee` SET `name`= '$_POST[your_name]',`address`='$_POST[address]', `phone`='$_POST[your_phone]', `dbo`='$_POST[your_dob]' WHERE `id`= $id";
+                    $statement = $this->adapter->query($sql);
+                    $results = $statement->execute();
+                }
             return $this->redirect()->toRoute('home');
         }
         else{ 

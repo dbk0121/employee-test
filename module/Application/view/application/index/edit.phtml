@@ -10,7 +10,7 @@
                   </div>
                   <div class="col-md-12">
                     <label for="your_phone" class="form-label">Phone</label>                    
-                      <input type="tel" class="form-control" id="your_phone" name="your_phone" aria-describedby="inputGroupPrepend" value="<?php echo $result['phone'] ?>" required>                    
+                      <input type="tel" class="form-control" id="your_phone" name="your_phone" aria-describedby="inputGroupPrepend"  pattern="[0-9]{1,14}" value="<?php echo $result['phone'] ?>" required>                    
                   </div>
                   <div class="col-md-12">
                   <br />
@@ -22,6 +22,11 @@
                   <div class="col-md-12">
                     <label for="your_dob" class="form-label">Date of Birth</label>
                     <input type="date" class="form-control" id="your_dob" name="your_dob" value="<?php echo date("Y-m-d", strtotime($result['dbo'])) ?>" max="<?php echo date("Y-m-d") ?>" required>                    
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <label for="your_profile_img" class="form-label">Profile Image</label>
+                    <input type="file" class="form-control" id="your_profile_img" name="your_profile_img" value="<?php echo $this->basePath('uploads/').$res['image']; ?>" accept="image/png, image/gif, image/jpeg, image/jpg">                    
                   </div>
                   
                   <div class="col-md-12">

@@ -1,29 +1,32 @@
 
        
         <table class="table table-striped">
-            <tr>
-                <th>
-                    Employee Image
-                </th>
-                <th>
-                    Employee Name
-                </th>
-                <th>
-                    Address
-                </th>
-                <th>
-                    Email Address
-                </th>
-                <th>
-                    Phone
-                </th>
-                <th>
-                    Date of Birth
-                </th>
-                <th>
-                    Action
-                </th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>
+                        Employee Image
+                    </th>
+                    <th>
+                        Employee Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Email Address
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Date of Birth
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
             <?php 
             foreach ($result as $res) {
                 echo '<tr>
@@ -39,4 +42,5 @@
                     <?php
             }
             ?>
+            </tbody>
         </table>
